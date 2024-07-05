@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -69,6 +75,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -141,6 +148,60 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Answer_Basic.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BenModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BenModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BenModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BenModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BenModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClinicPeriod.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FinishQA.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LockClinicPeriod.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailBasic.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailCcs.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailGroup.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailTos.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewTb.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PFTarget.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question_Basic.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SwitchAccountsLog.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysHospital.cs">
+      <DependentUpon>BenModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -164,12 +225,29 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\BenModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BenModel.Context.cs</LastGenOutput>
+      <DependentUpon>BenModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BenModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BenModel.edmx</DependentUpon>
+      <LastGenOutput>BenModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\BenModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BenModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BenModel.edmx.diagram">
+      <DependentUpon>BenModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -200,7 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -228,6 +305,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

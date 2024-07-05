@@ -93,6 +93,32 @@
                 encodedValue.innerText = value;
                 return encodedValue.innerHTML;
             }
+
+
+            chat.on("TriggerGetEDB", function (message) {
+                let link = 'GetData';
+                let data = {
+                    // 在這裡添加要 POST 的資料
+                    // 例如:
+                    // name: 'John Doe',
+                    hospRTId: message
+                };
+                $.ajax({
+                    url: link,
+                    contentType: 'application/html ; charset:utf-8',
+                    data: JSON.stringify(data),
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success: function (e) {
+                        //alert("ajax");
+                        console.log(e);
+                    }
+                });
+            })
+            $('#myButton').click(function () {
+                // 呼叫 Hello 方法並傳遞一個訊息
+                chat.invoke('GetEDB', 'Message from button click');
+            });
         });
         
     </script>

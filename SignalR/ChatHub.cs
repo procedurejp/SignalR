@@ -24,5 +24,9 @@ namespace SignalR
         {
             Clients.All.HubCallBack(message);
         }
+        public void GetEDB(string message)
+        {
+            Clients.All.TriggerGetEDB(message);
+        }
     }
 }

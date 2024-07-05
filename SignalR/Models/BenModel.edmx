@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answer_Basic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="questionId" Type="bigint" />
+          <Property Name="answer" Type="nvarchar" MaxLength="50" />
+          <Property Name="createTime" Type="datetime" />
+          <Property Name="lastEditTime" Type="datetime" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ClinicPeriod">
+          <Key>
+            <PropertyRef Name="MSRowid" />
+          </Key>
+          <Property Name="MSRowid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MSHospID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MSCode" Type="char" MaxLength="1" />
+          <Property Name="MSDrId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MSDrBNO" Type="char" MaxLength="10" />
+          <Property Name="MSDrName" Type="nvarchar" MaxLength="20" />
+          <Property Name="MSHISDate" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="MSRegSection" Type="char" MaxLength="1" />
+          <Property Name="MSKind" Type="char" MaxLength="10" />
+          <Property Name="MSPeople" Type="int" />
+          <Property Name="MSFirstOrNot" Type="char" MaxLength="1" />
+          <Property Name="MSTotalMoney" Type="int" />
+        </EntityType>
+        <EntityType Name="FinishQA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member" Type="nvarchar" MaxLength="50" />
+          <Property Name="UID" Type="nchar" MaxLength="10" />
+          <Property Name="Answer" Type="nvarchar(max)" />
+          <Property Name="CreatTime" Type="datetime" />
+          <Property Name="lastEditTime" Type="datetime" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Clinic" Type="nvarchar" MaxLength="10" />
+          <Property Name="QuesionId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="LockClinicPeriod">
+          <Key>
+            <PropertyRef Name="MSRowid" />
+          </Key>
+          <Property Name="MSRowid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MSHospID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MSCode" Type="char" MaxLength="1" />
+          <Property Name="MSDrId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MSDrBNO" Type="char" MaxLength="10" />
+          <Property Name="MSDrName" Type="nvarchar" MaxLength="20" />
+          <Property Name="MSHISDate" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="MSRegSection" Type="char" MaxLength="1" />
+          <Property Name="MSKind" Type="char" MaxLength="10" />
+          <Property Name="MSPeople" Type="int" />
+          <Property Name="MSFirstOrNot" Type="char" MaxLength="1" />
+          <Property Name="MSTotalMoney" Type="int" />
+        </EntityType>
+        <EntityType Name="MailBasic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserRealName" Type="nvarchar" MaxLength="10" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="MailCcs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SUHDisplaySeq" Type="int" />
+          <Property Name="GroupId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="MailGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Class" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MailTos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SUHDisplaySeq" Type="int" />
+          <Property Name="GroupId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="NewTb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="NId" Type="nvarchar" MaxLength="50" />
+          <Property Name="text1" Type="nvarchar" MaxLength="50" />
+          <Property Name="text2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PFTarget">
+          <Key>
+            <PropertyRef Name="PFTRowid" />
+            <PropertyRef Name="PFTHospID" />
+            <PropertyRef Name="PFTYear" />
+            <PropertyRef Name="PFTMonth" />
+          </Key>
+          <Property Name="PFTRowid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PFTHospID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PFTYear" Type="int" Nullable="false" />
+          <Property Name="PFTMonth" Type="int" Nullable="false" />
+          <Property Name="PFTLValue" Type="int" Nullable="false" />
+          <Property Name="PFTHValue" Type="int" Nullable="false" />
+          <Property Name="3lock" Type="bit" />
+        </EntityType>
+        <EntityType Name="Question_Basic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question" Type="varchar" MaxLength="50" />
+          <Property Name="answer_detail" Type="varchar" MaxLength="200" />
+          <Property Name="createTime" Type="datetime" />
+          <Property Name="lastEditTime" Type="datetime" />
+          <Property Name="Note" Type="varchar(max)" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SwitchAccountsLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="clsTime" Type="datetime" />
+          <Property Name="clsUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="opnTime" Type="datetime" />
+          <Property Name="opnUserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="sysHospital">
+          <Key>
+            <PropertyRef Name="HospRowid" />
+          </Key>
+          <Property Name="HospRowid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="HospSeq" Type="int" Nullable="false" />
+          <Property Name="HospID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="HospName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="HospBID" Type="nvarchar" MaxLength="10" />
+          <Property Name="HospBName" Type="nvarchar" MaxLength="20" />
+          <Property Name="HospUniformNo" Type="nvarchar" MaxLength="15" />
+          <Property Name="HospPrincipal" Type="nvarchar" MaxLength="128" />
+          <Property Name="HospDean" Type="nvarchar" MaxLength="128" />
+          <Property Name="HospAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="HospAreaCode" Type="nvarchar" MaxLength="6" />
+          <Property Name="HospPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="HospFaxno" Type="nvarchar" MaxLength="20" />
+          <Property Name="HospEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="HospLevel" Type="nvarchar" MaxLength="20" />
+          <Property Name="HospHIS" Type="nvarchar" MaxLength="50" />
+          <Property Name="HospActive" Type="bit" />
+          <Property Name="HospImage" Type="nvarchar(max)" />
+          <Property Name="HospRegSys" Type="nvarchar" MaxLength="50" />
+          <Property Name="HospLogo" Type="nvarchar" MaxLength="255" />
+          <Property Name="HospQRCode01" Type="nvarchar" MaxLength="255" />
+          <Property Name="HospQRCode02" Type="nvarchar" MaxLength="255" />
+          <Property Name="HospRTId" Type="nvarchar" MaxLength="50" />
+          <Property Name="HospIPAddress" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UpdateTime" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="TestModelStoreContainer">
+          <EntitySet Name="Answer_Basic" EntityType="Self.Answer_Basic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClinicPeriod" EntityType="Self.ClinicPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinishQA" EntityType="Self.FinishQA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LockClinicPeriod" EntityType="Self.LockClinicPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailBasic" EntityType="Self.MailBasic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailCcs" EntityType="Self.MailCcs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailGroup" EntityType="Self.MailGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailTos" EntityType="Self.MailTos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewTb" EntityType="Self.NewTb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PFTarget" EntityType="Self.PFTarget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_Basic" EntityType="Self.Question_Basic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SwitchAccountsLog" EntityType="Self.SwitchAccountsLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysHospital" EntityType="Self.sysHospital" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer_Basic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="questionId" Type="Int64" />
+          <Property Name="answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createTime" Type="DateTime" Precision="3" />
+          <Property Name="lastEditTime" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClinicPeriod">
+          <Key>
+            <PropertyRef Name="MSRowid" />
+          </Key>
+          <Property Name="MSRowid" Type="Guid" Nullable="false" />
+          <Property Name="MSHospID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MSCode" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MSDrId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MSDrBNO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MSDrName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MSHISDate" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MSRegSection" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MSKind" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MSPeople" Type="Int32" />
+          <Property Name="MSFirstOrNot" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MSTotalMoney" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FinishQA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="member" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatTime" Type="DateTime" Precision="3" />
+          <Property Name="lastEditTime" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Clinic" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="QuesionId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LockClinicPeriod">
+          <Key>
+            <PropertyRef Name="MSRowid" />
+          </Key>
+          <Property Name="MSRowid" Type="Guid" Nullable="false" />
+          <Property Name="MSHospID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MSCode" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MSDrId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MSDrBNO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MSDrName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MSHISDate" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MSRegSection" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MSKind" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="MSPeople" Type="Int32" />
+          <Property Name="MSFirstOrNot" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MSTotalMoney" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MailBasic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserRealName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MailCcs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SUHDisplaySeq" Type="Int32" />
+          <Property Name="GroupId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MailGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MailTos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SUHDisplaySeq" Type="Int32" />
+          <Property Name="GroupId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NewTb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="NId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="text1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="text2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="PFTarget">
+          <Key>
+            <PropertyRef Name="PFTRowid" />
+            <PropertyRef Name="PFTHospID" />
+            <PropertyRef Name="PFTYear" />
+            <PropertyRef Name="PFTMonth" />
+          </Key>
+          <Property Name="PFTRowid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PFTHospID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PFTYear" Type="Int32" Nullable="false" />
+          <Property Name="PFTMonth" Type="Int32" Nullable="false" />
+          <Property Name="PFTLValue" Type="Int32" Nullable="false" />
+          <Property Name="PFTHValue" Type="Int32" Nullable="false" />
+          <Property Name="C3lock" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Question_Basic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="answer_detail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="createTime" Type="DateTime" Precision="3" />
+          <Property Name="lastEditTime" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SwitchAccountsLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="clsTime" Type="DateTime" Precision="3" />
+          <Property Name="clsUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="opnTime" Type="DateTime" Precision="3" />
+          <Property Name="opnUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysHospital">
+          <Key>
+            <PropertyRef Name="HospRowid" />
+          </Key>
+          <Property Name="HospRowid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HospSeq" Type="Int32" Nullable="false" />
+          <Property Name="HospID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="HospName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HospBID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="HospBName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HospUniformNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="HospPrincipal" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HospDean" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="HospAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HospAreaCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="HospPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HospFaxno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HospEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HospLevel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HospHIS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HospActive" Type="Boolean" />
+          <Property Name="HospImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HospRegSys" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HospLogo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HospQRCode01" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HospQRCode02" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HospRTId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HospIPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answer_Basic" EntityType="Self.Answer_Basic" />
+          <EntitySet Name="ClinicPeriod" EntityType="Self.ClinicPeriod" />
+          <EntitySet Name="FinishQA" EntityType="Self.FinishQA" />
+          <EntitySet Name="LockClinicPeriod" EntityType="Self.LockClinicPeriod" />
+          <EntitySet Name="MailBasic" EntityType="Self.MailBasic" />
+          <EntitySet Name="MailCcs" EntityType="Self.MailCcs" />
+          <EntitySet Name="MailGroup" EntityType="Self.MailGroup" />
+          <EntitySet Name="MailTos" EntityType="Self.MailTos" />
+          <EntitySet Name="NewTb" EntityType="Self.NewTb" />
+          <EntitySet Name="PFTarget" EntityType="Self.PFTarget" />
+          <EntitySet Name="Question_Basic" EntityType="Self.Question_Basic" />
+          <EntitySet Name="SwitchAccountsLog" EntityType="Self.SwitchAccountsLog" />
+          <EntitySet Name="sysHospital" EntityType="Self.sysHospital" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities">
+          <EntitySetMapping Name="Answer_Basic">
+            <EntityTypeMapping TypeName="TestModel.Answer_Basic">
+              <MappingFragment StoreEntitySet="Answer_Basic">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="lastEditTime" ColumnName="lastEditTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClinicPeriod">
+            <EntityTypeMapping TypeName="TestModel.ClinicPeriod">
+              <MappingFragment StoreEntitySet="ClinicPeriod">
+                <ScalarProperty Name="MSRowid" ColumnName="MSRowid" />
+                <ScalarProperty Name="MSHospID" ColumnName="MSHospID" />
+                <ScalarProperty Name="MSCode" ColumnName="MSCode" />
+                <ScalarProperty Name="MSDrId" ColumnName="MSDrId" />
+                <ScalarProperty Name="MSDrBNO" ColumnName="MSDrBNO" />
+                <ScalarProperty Name="MSDrName" ColumnName="MSDrName" />
+                <ScalarProperty Name="MSHISDate" ColumnName="MSHISDate" />
+                <ScalarProperty Name="MSRegSection" ColumnName="MSRegSection" />
+                <ScalarProperty Name="MSKind" ColumnName="MSKind" />
+                <ScalarProperty Name="MSPeople" ColumnName="MSPeople" />
+                <ScalarProperty Name="MSFirstOrNot" ColumnName="MSFirstOrNot" />
+                <ScalarProperty Name="MSTotalMoney" ColumnName="MSTotalMoney" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinishQA">
+            <EntityTypeMapping TypeName="TestModel.FinishQA">
+              <MappingFragment StoreEntitySet="FinishQA">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="member" ColumnName="member" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="CreatTime" ColumnName="CreatTime" />
+                <ScalarProperty Name="lastEditTime" ColumnName="lastEditTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Clinic" ColumnName="Clinic" />
+                <ScalarProperty Name="QuesionId" ColumnName="QuesionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LockClinicPeriod">
+            <EntityTypeMapping TypeName="TestModel.LockClinicPeriod">
+              <MappingFragment StoreEntitySet="LockClinicPeriod">
+                <ScalarProperty Name="MSRowid" ColumnName="MSRowid" />
+                <ScalarProperty Name="MSHospID" ColumnName="MSHospID" />
+                <ScalarProperty Name="MSCode" ColumnName="MSCode" />
+                <ScalarProperty Name="MSDrId" ColumnName="MSDrId" />
+                <ScalarProperty Name="MSDrBNO" ColumnName="MSDrBNO" />
+                <ScalarProperty Name="MSDrName" ColumnName="MSDrName" />
+                <ScalarProperty Name="MSHISDate" ColumnName="MSHISDate" />
+                <ScalarProperty Name="MSRegSection" ColumnName="MSRegSection" />
+                <ScalarProperty Name="MSKind" ColumnName="MSKind" />
+                <ScalarProperty Name="MSPeople" ColumnName="MSPeople" />
+                <ScalarProperty Name="MSFirstOrNot" ColumnName="MSFirstOrNot" />
+                <ScalarProperty Name="MSTotalMoney" ColumnName="MSTotalMoney" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailBasic">
+            <EntityTypeMapping TypeName="TestModel.MailBasic">
+              <MappingFragment StoreEntitySet="MailBasic">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserRealName" ColumnName="UserRealName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailCcs">
+            <EntityTypeMapping TypeName="TestModel.MailCcs">
+              <MappingFragment StoreEntitySet="MailCcs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SUHDisplaySeq" ColumnName="SUHDisplaySeq" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailGroup">
+            <EntityTypeMapping TypeName="TestModel.MailGroup">
+              <MappingFragment StoreEntitySet="MailGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailTos">
+            <EntityTypeMapping TypeName="TestModel.MailTos">
+              <MappingFragment StoreEntitySet="MailTos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SUHDisplaySeq" ColumnName="SUHDisplaySeq" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewTb">
+            <EntityTypeMapping TypeName="TestModel.NewTb">
+              <MappingFragment StoreEntitySet="NewTb">
+                <ScalarProperty Name="NId" ColumnName="NId" />
+                <ScalarProperty Name="text1" ColumnName="text1" />
+                <ScalarProperty Name="text2" ColumnName="text2" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PFTarget">
+            <EntityTypeMapping TypeName="TestModel.PFTarget">
+              <MappingFragment StoreEntitySet="PFTarget">
+                <ScalarProperty Name="PFTRowid" ColumnName="PFTRowid" />
+                <ScalarProperty Name="PFTHospID" ColumnName="PFTHospID" />
+                <ScalarProperty Name="PFTYear" ColumnName="PFTYear" />
+                <ScalarProperty Name="PFTMonth" ColumnName="PFTMonth" />
+                <ScalarProperty Name="PFTLValue" ColumnName="PFTLValue" />
+                <ScalarProperty Name="PFTHValue" ColumnName="PFTHValue" />
+                <ScalarProperty Name="C3lock" ColumnName="3lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_Basic">
+            <EntityTypeMapping TypeName="TestModel.Question_Basic">
+              <MappingFragment StoreEntitySet="Question_Basic">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="answer_detail" ColumnName="answer_detail" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="lastEditTime" ColumnName="lastEditTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SwitchAccountsLog">
+            <EntityTypeMapping TypeName="TestModel.SwitchAccountsLog">
+              <MappingFragment StoreEntitySet="SwitchAccountsLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="clsTime" ColumnName="clsTime" />
+                <ScalarProperty Name="clsUserId" ColumnName="clsUserId" />
+                <ScalarProperty Name="opnTime" ColumnName="opnTime" />
+                <ScalarProperty Name="opnUserId" ColumnName="opnUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysHospital">
+            <EntityTypeMapping TypeName="TestModel.sysHospital">
+              <MappingFragment StoreEntitySet="sysHospital">
+                <ScalarProperty Name="HospRowid" ColumnName="HospRowid" />
+                <ScalarProperty Name="HospSeq" ColumnName="HospSeq" />
+                <ScalarProperty Name="HospID" ColumnName="HospID" />
+                <ScalarProperty Name="HospName" ColumnName="HospName" />
+                <ScalarProperty Name="HospBID" ColumnName="HospBID" />
+                <ScalarProperty Name="HospBName" ColumnName="HospBName" />
+                <ScalarProperty Name="HospUniformNo" ColumnName="HospUniformNo" />
+                <ScalarProperty Name="HospPrincipal" ColumnName="HospPrincipal" />
+                <ScalarProperty Name="HospDean" ColumnName="HospDean" />
+                <ScalarProperty Name="HospAddress" ColumnName="HospAddress" />
+                <ScalarProperty Name="HospAreaCode" ColumnName="HospAreaCode" />
+                <ScalarProperty Name="HospPhone" ColumnName="HospPhone" />
+                <ScalarProperty Name="HospFaxno" ColumnName="HospFaxno" />
+                <ScalarProperty Name="HospEmail" ColumnName="HospEmail" />
+                <ScalarProperty Name="HospLevel" ColumnName="HospLevel" />
+                <ScalarProperty Name="HospHIS" ColumnName="HospHIS" />
+                <ScalarProperty Name="HospActive" ColumnName="HospActive" />
+                <ScalarProperty Name="HospImage" ColumnName="HospImage" />
+                <ScalarProperty Name="HospRegSys" ColumnName="HospRegSys" />
+                <ScalarProperty Name="HospLogo" ColumnName="HospLogo" />
+                <ScalarProperty Name="HospQRCode01" ColumnName="HospQRCode01" />
+                <ScalarProperty Name="HospQRCode02" ColumnName="HospQRCode02" />
+                <ScalarProperty Name="HospRTId" ColumnName="HospRTId" />
+                <ScalarProperty Name="HospIPAddress" ColumnName="HospIPAddress" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
